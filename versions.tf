@@ -12,9 +12,9 @@ terraform {
       version = "~> 3.6"
     }
   }
-  
+
   backend "azurerm" {
-    use_azuread_auth = true    # authenticate to state with Azure AD, not a key
+    use_azuread_auth = true # authenticate to state with Azure AD, not a key
     # resource_group_name / storage_account_name / container_name / key
     # are provided at init:  terraform init -backend-config=environments/dev.backend.hcl
   }

@@ -46,7 +46,7 @@ resource "azurerm_subnet" "private_endpoints" {
 
 # mysql private dns zone
 resource "azurerm_private_dns_zone" "private_mysql" {
-  name                = "${var.name_prefix}.private.mysql.database.azure.com "
+  name                = "${var.name_prefix}.private.mysql.database.azure.com"
   resource_group_name = var.resource_group_name
 }
 
@@ -59,7 +59,7 @@ resource "azurerm_private_dns_zone_virtual_network_link" "vnet_mysql" {
 
 # Redis private DNS zone
 resource "azurerm_private_dns_zone" "privatelink_redis" {
-  name                = "${var.name_prefix}.privatelink.redis.cache.windows."
+  name                = "${var.name_prefix}.privatelink.redis.cache.windows.net"
   resource_group_name = var.resource_group_name
 }
 
@@ -79,6 +79,6 @@ output "snet_mysql_id" {
     value = azure_subnet.mysql.id
 }
 
-output "snet_container_apps_id" {
+output "snet_private_endpoints_id" {
     value = azure_subnet.private_endpoints.id
 }
