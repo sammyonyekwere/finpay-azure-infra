@@ -1,7 +1,7 @@
 # Managed Identity
 resource "azurerm_user_assigned_identity" "app" {
-  name = "id-${var.name_prefix}-app"
-  location = var.location
+  name                = "id-${var.name_prefix}-app"
+  location            = var.location
   resource_group_name = var.resource_group_name
 }
 

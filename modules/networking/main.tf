@@ -1,23 +1,23 @@
 resource "azurerm_virtual_network" "main" {
-    name = "vnet-${var.name_prefix}"
-    address_space = [var.vnet_address_space]
-    location = var.location
-    resource_group_name = var.resource_group_name
+  name                = "vnet-${var.name_prefix}"
+  address_space       = [var.vnet_address_space]
+  location            = var.location
+  resource_group_name = var.resource_group_name
 }
 
 resource "azure_subnet" "container_apps" {
-    name = "snet-container-apps"
-    resource_group_name = var.resource_group_name
-    virtual_network_name = azurerm_virtual_network.main.name
-    address_prefixes = [cidrsubnet(var.vnet_address_space, 7, 0)]
+  name                 = "snet-container-apps"
+  resource_group_name  = var.resource_group_name
+  virtual_network_name = azurerm_virtual_network.main.name
+  address_prefixes     = [cidrsubnet(var.vnet_address_space, 7, 0)]
 
-    delegation {
-        name = "aca"
-        service_delegation {
-            name = "Microsoft.App/environments"
-            actions = ["Microsoft.Network/virtualNetworks/subnets/join/action"]
-        }
+  delegation {
+    name = "aca"
+    service_delegation {
+      name    = "Microsoft.App/environments"
+      actions = ["Microsoft.Network/virtualNetworks/subnets/join/action"]
     }
+  }
 }
 
 resource "azurerm_subnet" "mysql" {
@@ -52,9 +52,10 @@ resource "azurerm_private_dns_zone" "private_mysql" {
 
 # Linking mysql private dns zone to main VNet
 resource "azurerm_private_dns_zone_virtual_network_link" "vnet_mysql" {
-  name                = "vnet-mysql-zone"
-  private_dns_zone_id = azurerm_private_dns_zone.private_mysql.id
-  virtual_network_id  = azurerm_virtual_network.main.id
+  name                  = "vnet-mysql-zone"
+  resource_group_name   = var.resource_group_name
+  private_dns_zone_name = azurerm_private_dns_zone.private_mysql.name
+  virtual_network_id    = azurerm_virtual_network.main.id
 }
 
 # Redis private DNS zone
@@ -65,20 +66,10 @@ resource "azurerm_private_dns_zone" "privatelink_redis" {
 
 # Linking redis private dns zone to main VNet
 resource "azurerm_private_dns_zone_virtual_network_link" "vnet_redis" {
-  name                = "vnet-redis-zone"
-  private_dns_zone_id = azurerm_private_dns_zone.privatelink_redis.id
-  virtual_network_id  = azurerm_virtual_network.main.id
+  name                  = "vnet-redis-zone"
+  resource_group_name   = var.resource_group_name
+  private_dns_zone_name = azurerm_private_dns_zone.privatelink_redis.name
+  virtual_network_id    = azurerm_virtual_network.main.id
 }
 
 
-output "snet_container_apps_id" {
-    value = azure_subnet.container_apps.id
-}
-
-output "snet_mysql_id" {
-    value = azure_subnet.mysql.id
-}
-
-output "snet_private_endpoints_id" {
-    value = azure_subnet.private_endpoints.id
-}

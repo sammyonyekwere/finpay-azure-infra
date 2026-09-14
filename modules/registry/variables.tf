@@ -1,26 +1,26 @@
 
 variable "acr_id" {
   description = "Azure Container Registry ID"
-  type = string
+  type        = string
 }
 
 variable "key_vault_id" {
   description = "Key Vault ID"
-  type = string
+  type        = string
 }
 
 variable "location" {
   description = "Location"
-  type = string
+  type        = string
 }
 
 
 variable "resource_group_name" {
   description = "The name of the Resource Group"
-  type = string
+  type        = string
 }
 
 variable "name_prefix" {
   description = "The name prefix"
-  type = string
+  type        = string
 }

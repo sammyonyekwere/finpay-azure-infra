@@ -20,26 +20,26 @@ resource "azurerm_container_app" "main" {
   resource_group_name          = var.resource_group_name
   revision_mode                = "Single"
 
-  identity { 
-    type = "UserAssigned"
-     identity_ids = [azurerm_user_assigned_identity.app.id] 
-    }
-  
+  identity {
+    type         = "UserAssigned"
+    identity_ids = [azurerm_user_assigned_identity.app.id]
+  }
+
   registry {
-    server = var.acr_login_server
+    server   = var.acr_login_server
     identity = azurerm_user_assigned_identity.app.id
   }
 
   ingress {
     external_enabled = true
-    target_port = 80
+    target_port      = 80
     traffic_weight {
       latest_revision = true
-      percentage = 100
+      percentage      = 100
     }
   }
-  
-template {
+
+  template {
     min_replicas = var.min_replicas
     max_replicas = var.max_replicas
     container {
@@ -47,33 +47,33 @@ template {
       image  = "${var.acr_login_server}/finpay:${var.image_tag}"
       cpu    = 0.5
       memory = "1Gi"
-      env { 
-        name = "DB_HOST"
-       value = var.db_host 
-       }          
-      env { 
-        name = "DB_PASSWORD" 
-        secret_name = "db-password" 
-        } # from Key Vault
-      env { 
-        name = "JWT_SECRET"
-        secret_name = "jwt-secret" 
-        }
-      env { 
-        name = "STRIPE_KEY"
-        secret_name = "stripe-key" 
-        }
-      env { 
-        name = "BTC_XPUB"
-      secret_name = "btc-xpub" 
+      env {
+        name  = "DB_HOST"
+        value = var.db_host
       }
-      liveness_probe { 
+      env {
+        name        = "DB_PASSWORD"
+        secret_name = "db-password"
+      } # from Key Vault
+      env {
+        name        = "JWT_SECRET"
+        secret_name = "jwt-secret"
+      }
+      env {
+        name        = "STRIPE_KEY"
+        secret_name = "stripe-key"
+      }
+      env {
+        name        = "BTC_XPUB"
+        secret_name = "btc-xpub"
+      }
+      liveness_probe {
         transport = "HTTP"
-        port = 80
-        path = "/health.php" 
-        }
+        port      = 80
+        path      = "/health.php"
+      }
     }
-    dynamic "secret" {                         # one block per Key Vault secret
+    dynamic "secret" { # one block per Key Vault secret
       for_each = var.kv_secret_ids
       content {
         name                = secret.key
@@ -82,9 +82,9 @@ template {
       }
     }
   }
-  depends_on = [ 
+  depends_on = [
     azurerm_role_assignment.acr_pull,
     azurerm_role_assignment.kv_secret_user
-   ]
+  ]
 }
 

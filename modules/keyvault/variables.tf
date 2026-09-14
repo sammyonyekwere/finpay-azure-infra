@@ -1,12 +1,12 @@
 variable "secrets" {
-    description = "Map of secret name to secret value to store in Key Vault"
-  type = map(string)
-  sensitive = true
+  description = "Map of secret name to secret value to store in Key Vault"
+  type        = map(string)
+  sensitive   = true
 }
 
 variable "deployer_principal_id" {
   description = "The ID of the Azure role assignment deployer"
-  type = string
+  type        = string
 }
 
 variable "tenant_id" {

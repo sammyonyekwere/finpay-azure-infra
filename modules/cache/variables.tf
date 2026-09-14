@@ -6,7 +6,7 @@ variable "resource_group_name" {
   type = string
 }
 
-variable "name_suffix" {
+variable "name_prefix" {
   type = string
 }
 

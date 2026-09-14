@@ -5,15 +5,15 @@ resource "azurerm_mysql_flexible_server" "main" {
   administrator_login    = var.administrator_login
   administrator_password = var.administrator_passwrd
   sku_name               = var.sku_name
-  version = "8.0.21"
+  version                = "8.0.21"
   delegated_subnet_id    = var.mysql_subnet_id
   private_dns_zone_id    = var.mysql_private_dns_zone_id
 
-  storage { 
-    size_gb = var.storage_gb
-    auto_grow_enabled = true 
+  storage {
+    size_gb           = var.storage_gb
+    auto_grow_enabled = true
   }
-  backup_retention_days  = 7
+  backup_retention_days = 7
 }
 
 resource "azurerm_mysql_flexible_database" "main" {
