@@ -5,7 +5,7 @@ resource "azurerm_virtual_network" "main" {
   resource_group_name = var.resource_group_name
 }
 
-resource "azure_subnet" "container_apps" {
+resource "azurerm_subnet" "container_apps" {
   name                 = "snet-container-apps"
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.main.name

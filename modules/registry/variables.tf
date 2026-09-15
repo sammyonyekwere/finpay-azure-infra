@@ -1,8 +1,4 @@
 
-variable "acr_id" {
-  description = "Azure Container Registry ID"
-  type        = string
-}
 
 variable "key_vault_id" {
   description = "Key Vault ID"

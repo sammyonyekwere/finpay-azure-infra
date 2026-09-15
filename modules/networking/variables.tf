@@ -3,7 +3,8 @@ variable "name_prefix" {
 }
 
 variable "vnet_address_space" {
-  type = string
+  type    = string
+  default = "10.0.0.0/16"
 }
 
 variable "location" {

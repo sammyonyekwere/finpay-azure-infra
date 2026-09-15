@@ -1,5 +1,5 @@
 output "container_apps_subnet_id" {
-  value = azure_subnet.container_apps.id
+  value = azurerm_subnet.container_apps.id
 }
 
 output "mysql_private_dns_zone_id" {

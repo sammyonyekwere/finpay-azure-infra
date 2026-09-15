@@ -40,4 +40,6 @@ variable "kv_secret_ids" {
   type = map(string)
 }
 
-
+variable "identity_id" {
+  type = string
+}

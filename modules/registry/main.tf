@@ -8,14 +8,23 @@ resource "azurerm_user_assigned_identity" "app" {
 # Asign roles to the managed identity 
 # AcrPull scoped to the container registry
 resource "azurerm_role_assignment" "acr_pull" {
-  scope              = var.acr_id
+  scope              = azurerm_container_registry.this.id
   role_definition_id = "AcrPull"
-  principal_id       = azurerm_user_assigned_identity.app.id
+  principal_id       = azurerm_user_assigned_identity.app.principal_id
 }
 
 # Key Vault Secrets User scoped to the key_vault
 resource "azurerm_role_assignment" "kv_secret_user" {
   scope              = var.key_vault_id
   role_definition_id = "Key Vault Secrets User"
-  principal_id       = azurerm_user_assigned_identity.app.id
+  principal_id       = azurerm_user_assigned_identity.app.principal_id
+}
+
+
+resource "azurerm_container_registry" "this" {
+  name                = replace("acr${var.name_prefix}", "-", "")
+  location            = var.location
+  resource_group_name = var.resource_group_name
+  sku                 = "Basic"
+  admin_enabled       = false
 }

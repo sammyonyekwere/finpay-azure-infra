@@ -22,12 +22,12 @@ resource "azurerm_container_app" "main" {
 
   identity {
     type         = "UserAssigned"
-    identity_ids = [azurerm_user_assigned_identity.app.id]
+    identity_ids = [var.identity_id]
   }
 
   registry {
     server   = var.acr_login_server
-    identity = azurerm_user_assigned_identity.app.id
+    identity = var.identity_id
   }
 
   ingress {
@@ -73,18 +73,17 @@ resource "azurerm_container_app" "main" {
         path      = "/health.php"
       }
     }
-    dynamic "secret" { # one block per Key Vault secret
-      for_each = var.kv_secret_ids
-      content {
-        name                = secret.key
-        key_vault_secret_id = secret.value
-        identity            = azurerm_user_assigned_identity.app.id
-      }
+  }
+  dynamic "secret" { # one block per Key Vault secret
+    for_each = var.kv_secret_ids
+    content {
+      name                = secret.key
+      key_vault_secret_id = secret.value
+      identity            = azurerm_user_assigned_identity.app.id
     }
   }
   depends_on = [
-    azurerm_role_assignment.acr_pull,
-    azurerm_role_assignment.kv_secret_user
+
   ]
 }
 

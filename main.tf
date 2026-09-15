@@ -54,7 +54,6 @@ module "registry" {
   location            = local.location
   resource_group_name = local.resource_group_name
   key_vault_id        = var.key_vault_id
-  acr_id              = var.acr_id
 }
 
 module "keyvault" {
@@ -76,6 +75,7 @@ module "container_app" {
   location                 = local.location
   resource_group_name      = local.resource_group_name
   name_prefix              = local.name_prefix
+  identity_id              = module.registry.identity_id
   db_host                  = module.database.server_fqdn
   acr_login_server         = module.registry.login_server
   max_replicas             = var.max_replicas
