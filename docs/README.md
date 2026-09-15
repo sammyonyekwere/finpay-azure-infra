@@ -3,7 +3,7 @@
 Organized using the [Diátaxis](https://diataxis.fr/) framework:
 
 | Type | Start here |
-|---|---|---|
+|---|---|
 | [Tutorials](tutorials/) | [Deploy a dev environment](tutorials/deploy-dev-environment.md) |
 | [How-to guides](how-to/) | [How-to index](how-to/) |
 | [Reference](reference/) | [Module reference](reference/modules/) |
