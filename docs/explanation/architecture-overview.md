@@ -32,8 +32,8 @@ apply graph, is pulling the image — registry and identity are provisioned toge
 the identity exists before `container_app` needs to reference it. It's a slightly
 surprising home for it; see [secrets-and-identity-model](secrets-and-identity-model.md).
 
-## Known architectural gaps (as of this writing)
-
+<!-- ## Known architectural gaps (as of this writing) -->
+<!-- 
 - **`modules/monitoring` is an empty stub.** The Log Analytics workspace Container Apps
   actually logs to is created inline inside `modules/container_app` instead. See
   [reference: monitoring](../reference/modules/monitoring.md).
@@ -45,7 +45,7 @@ surprising home for it; see [secrets-and-identity-model](secrets-and-identity-mo
   [how-to: connect to MySQL privately](../how-to/connect-to-mysql-privately.md).
 - **Redis cache name is hardcoded** (`"redis-cache"`), not derived from `name_prefix` —
   see [reference: cache](../reference/modules/cache.md) for why that's a problem once a
-  second environment shares the naming namespace.
+  second environment shares the naming namespace. -->
 
-Keeping this list here (rather than only in code comments) is deliberate: it's the kind
-of context a new contributor needs before they assume monitoring or CI/CD already work.
+<!-- Keeping this list here (rather than only in code comments) is deliberate: it's the kind
+of context a new contributor needs before they assume monitoring or CI/CD already work. -->
