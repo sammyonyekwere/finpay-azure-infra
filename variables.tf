@@ -37,13 +37,6 @@ variable "administrator_passwrd" {
   type = string
 }
 
-variable "key_vault_id" {
-  type = string
-}
-
-variable "acr_id" {
-  type = string
-}
 
 variable "secrets" {
   type      = map(string)

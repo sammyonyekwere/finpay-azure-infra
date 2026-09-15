@@ -79,7 +79,7 @@ resource "azurerm_container_app" "main" {
     content {
       name                = secret.key
       key_vault_secret_id = secret.value
-      identity            = azurerm_user_assigned_identity.app.id
+      identity            = var.identity_id
     }
   }
   depends_on = [

@@ -4,3 +4,7 @@ output "secret_versionless_ids" {
     name => secret.versionless_id
   }
 }
+
+output "id" {
+  value = azurerm_key_vault.main.id
+}

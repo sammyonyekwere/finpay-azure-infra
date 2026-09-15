@@ -53,7 +53,7 @@ module "registry" {
   name_prefix         = local.name_prefix
   location            = local.location
   resource_group_name = local.resource_group_name
-  key_vault_id        = var.key_vault_id
+  key_vault_id        = module.keyvault.id
 }
 
 module "keyvault" {
