@@ -13,7 +13,7 @@ is shaped this way, see [explanation](../explanation/) instead.
   - [keyvault](modules/keyvault.md)
   - [registry](modules/registry.md)
   - [container_app](modules/container_app.md)
-  - [monitoring](modules/monitoring.md) — currently a stub, see note in the page
+  - [monitoring](modules/monitoring.md)
 
 Module pages between the `<!-- BEGIN_TF_DOCS -->`/`<!-- END_TF_DOCS -->` markers are
 generated with `terraform-docs` (see `.terraform-docs.yml` at repo root and `make docs`).
