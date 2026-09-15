@@ -1,14 +1,13 @@
 # FinPay Azure Infra Docs
 
-Organized using the [Diátaxis](https://diataxis.fr/) framework: docs are split by what
-the reader is trying to do, not by topic.
+Organized using the [Diátaxis](https://diataxis.fr/) framework:
 
-| Type | Answers | Start here |
+| Type | Start here |
 |---|---|---|
-| [Tutorials](tutorials/) | "Walk me through it" | [Deploy a dev environment](tutorials/deploy-dev-environment.md) |
-| [How-to guides](how-to/) | "How do I do X?" | [How-to index](how-to/) |
-| [Reference](reference/) | "What are the exact inputs/outputs?" | [Module reference](reference/modules/) |
-| [Explanation](explanation/) | "Why is it built this way?" | [Architecture overview](explanation/architecture-overview.md) |
+| [Tutorials](tutorials/) | [Deploy a dev environment](tutorials/deploy-dev-environment.md) |
+| [How-to guides](how-to/) | [How-to index](how-to/) |
+| [Reference](reference/) | [Module reference](reference/modules/) |
+| [Explanation](explanation/) |[Architecture overview](explanation/architecture-overview.md) |
 
 ## Conventions
 
@@ -30,5 +29,4 @@ the reader is trying to do, not by topic.
 
 - Tutorials, how-to guides, and explanation pages are hand-written and reviewed like code —
   they describe intent and reasoning that can't be generated from `.tf` files.
-- Known gaps in the infra are called out where relevant instead of glossed over (e.g. the
-  `monitoring` module is currently a stub — see [architecture-overview](explanation/architecture-overview.md)).
+  

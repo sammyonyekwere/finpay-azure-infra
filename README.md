@@ -80,8 +80,7 @@ Key Vault, Container Registry, Virtual Network
 
 ## Documentation
 
-Full docs live in [docs/](docs/), organized using the [Diátaxis](https://diataxis.fr/)
-framework:
+Full docs live in [docs/](docs/)
 
 - New to this repo? Start with the [tutorial](docs/tutorials/deploy-dev-environment.md).
 - Doing a specific task? See the [how-to guides](docs/how-to/).
